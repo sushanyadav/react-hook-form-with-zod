@@ -81,7 +81,7 @@ export default function App() {
                       : e.target.valueAsNumber
                   );
                 }}
-                value={value ?? ''}
+                value={isNaN(value) ? '' : value}
                 {...props}
               />
               {/* Error message */}
