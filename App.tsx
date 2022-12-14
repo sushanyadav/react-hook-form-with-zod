@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { transformNumberOnChange, transformNumberValue } from './numberInputs';
 
 const getSchema = (maxValue: number) => {
   const validationSchema = z.object({
@@ -51,14 +52,6 @@ export default function App() {
   //   );
   // }
 
-  const transformOnChange = (value: number) => {
-    return isNaN(value) ? undefined : value;
-  };
-
-  const transformValue = (value: number) => {
-    return isNaN(value) ? '' : value;
-  };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
@@ -83,9 +76,9 @@ export default function App() {
               <input
                 type="number"
                 onChange={(e) => {
-                  onChange(transformOnChange(e.target.valueAsNumber));
+                  onChange(transformNumberOnChange(e));
                 }}
-                value={transformValue(value)}
+                value={transformNumberValue(value)}
                 {...props}
               />
               {/* Error message */}
