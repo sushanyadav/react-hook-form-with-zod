@@ -61,15 +61,6 @@ export default function App() {
           field: { value, onChange, ...props },
           fieldState: { error },
         }) => {
-          // not rendering the field until we have max value for validation
-          if (maxValueLoading) {
-            return (
-              <React.Fragment>
-                Max Value is loading for validation please wait.....
-              </React.Fragment>
-            );
-          }
-
           return (
             <React.Fragment>
               {/* Number field  */}
@@ -78,11 +69,15 @@ export default function App() {
                 onChange={(e) => {
                   onChange(transformNumberOnChange(e));
                 }}
+                disabled={!maxValueLoading}
                 value={transformNumberValue(value)}
                 {...props}
               />
               {/* Error message */}
-              <p style={{ color: 'red' }}>{error?.message}</p>
+              <p style={{ color: 'red', fontSize: '12px' }}>{error?.message}</p>
+              <p style={{ fontSize: '12px' }}>
+                {maxValueLoading && 'Max value loading..'}
+              </p>
             </React.Fragment>
           );
         }}
