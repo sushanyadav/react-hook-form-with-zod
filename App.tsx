@@ -6,7 +6,7 @@ import { transformNumberOnChange, transformNumberValue } from './numberInputs';
 
 const getSchema = (maxValue: number) => {
   const validationSchema = z.object({
-    name: z.number().max(maxValue),
+    name: z.number().max(maxValue).nonnegative(),
   });
 
   return validationSchema;
