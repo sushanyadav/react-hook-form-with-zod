@@ -51,6 +51,14 @@ export default function App() {
   //   );
   // }
 
+  const transformOnChange = (value: number) => {
+    return isNaN(value) ? undefined : value;
+  };
+
+  const transformValue = (value: number) => {
+    return isNaN(value) ? '' : value;
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
@@ -75,13 +83,9 @@ export default function App() {
               <input
                 type="number"
                 onChange={(e) => {
-                  onChange(
-                    isNaN(e.target.valueAsNumber)
-                      ? undefined
-                      : e.target.valueAsNumber
-                  );
+                  onChange(transformOnChange(e.target.valueAsNumber));
                 }}
-                value={isNaN(value) ? '' : value}
+                value={transformValue(value)}
                 {...props}
               />
               {/* Error message */}
