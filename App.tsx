@@ -69,7 +69,7 @@ export default function App() {
                 onChange={(e) => {
                   onChange(transformNumberOnChange(e));
                 }}
-                disabled={!maxValueLoading}
+                disabled={maxValueLoading}
                 value={transformNumberValue(value)}
                 {...props}
               />
